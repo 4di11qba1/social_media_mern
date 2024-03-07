@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 1rem;
     background-color: var(--cardColor);
-    border-radius: 1rem;
+    border-radius: 1rem !important;
     gap: 1rem;
 }
 
@@ -17,6 +17,6 @@
 
 .postReact{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
 }

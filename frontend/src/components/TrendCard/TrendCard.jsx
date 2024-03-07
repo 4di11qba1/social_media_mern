@@ -1,21 +1,22 @@
 import React from 'react'
 import './TrendCard.css'
-
 import {TrendData} from '../../Data/TrendData.js'
+import { Card } from '@mui/material'
 const TrendCard = () => {
   return (
-    <div className="TrendCard">
-            <h3>Trends for you</h3>
-            {TrendData.map((trend)=>{
-                return(
-                    <div className="trend">
-                        <span>#{trend.name}</span>
-                        <span>{trend.shares}k shares</span>
-                    </div>
-                )
-            })}
+   <Card className="TrendCard">
+       <h3>Trends for your</h3>
 
-    </div>
+
+       {TrendData.map((trend, id)=>{
+            return(
+                <div className="trend" key={id}>
+                    <span>#{trend.name}</span>
+                    <span>{trend.shares}k shares</span>
+                </div>
+            )
+       })}
+   </Card>
   )
 }
 
