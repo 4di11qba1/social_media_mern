@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProfileCard.css";
-import { Card, Button } from "@mui/material";
+import { Card, Button, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const ProfileCard = ({location}) => {
@@ -31,13 +31,14 @@ const ProfileCard = ({location}) => {
       </div>
 
       <div className="followStatus">
-        <hr />
+        {/* <hr /> */}
+        <Divider />
         <div>
           <div className="follow">
             <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
-          <div className="vl"></div>
+          <Divider orientation="vertical" />
           <div className="follow">
             <span>{user.following.length}</span>
             <span>Following</span>
@@ -45,7 +46,7 @@ const ProfileCard = ({location}) => {
           {/* for profilepage */}
           {location === "profilePage" && (
             <>
-              <div className="vl"></div>
+              <Divider orientation="vertical" />
               <div className="follow">
                 <span>{
                 posts.filter((post)=>post.userId === user._id).length
@@ -55,7 +56,7 @@ const ProfileCard = ({location}) => {
             </>
           )}
         </div>
-        <hr />
+        <Divider sx={{marginBottom: '15px'}} />
       </div>
 
       {location === "profilePage" ? (

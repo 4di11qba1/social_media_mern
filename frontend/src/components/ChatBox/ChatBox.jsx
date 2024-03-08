@@ -3,8 +3,11 @@ import { useRef } from "react";
 import { addMessage, getMessages } from "../../api/MessageRequests";
 import { getUser } from "../../api/UserRequests";
 import "./ChatBox.css";
+import { Card, Button, IconButton } from '@mui/material';
 // import { format } from "timeago.js";
-import InputEmoji from 'react-input-emoji'
+import InputEmoji from 'react-input-emoji';
+import { darkTheme } from '../Theme.js';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
   const [userData, setUserData] = useState(null);
@@ -114,7 +117,7 @@ useEffect(()=> {
   const imageRef = useRef();
   return (
     <>
-      <div className="ChatBox-container">
+      <Card className="ChatBox-container">
         {chat ? (
           <>
             {/* chat-header */}
@@ -153,7 +156,7 @@ useEffect(()=> {
             {/* chat-body */}
             <div className="chat-body" >
               {messages.map((message, index) => (
-                <div key={index} ref={scroll} className={message.senderId === currentUser ? "message own" : "message"}>
+                <div key={index} ref={scroll} className={message.senderId === currentUser ? "message own" : "message"} style={{background: darkTheme.palette.background.default}}>
                   <div style={{ display: "flex", flexDirection: "column", gap: '5px' }}>
                     {message.senderId !== currentUser &&
                       <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
@@ -172,13 +175,13 @@ useEffect(()=> {
               ))}
             </div>
             {/* chat-sender */}
-            <div className="chat-sender">
-              <div onClick={() => imageRef.current.click()}>+</div>
+            <Card className="chat-sender" style={{background: darkTheme.palette.background.paper}}>
+              <div style={{backgroundColor: 'transparent'}}><IconButton onClick={() => imageRef.current.click()}><AddAPhotoIcon /></IconButton></div>
               <InputEmoji
                 value={newMessage}
                 onChange={handleChange}
               />
-              <div className="send-button button" onClick = {handleSend}>Send</div>
+              <Button variant="contained" type="submit" onClick={handleSend}>Send</Button>
               <input
                 type="file"
                 name=""
@@ -186,14 +189,14 @@ useEffect(()=> {
                 style={{ display: "none" }}
                 ref={imageRef}
               />
-            </div>{" "}
+            </Card>{" "}
           </>
         ) : (
           <span className="chatbox-empty-message">
             Tap on a chat to start conversation...
           </span>
         )}
-      </div>
+      </Card>
     </>
   );
 };

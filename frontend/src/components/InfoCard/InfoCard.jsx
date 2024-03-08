@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./InfoCard.css";
-import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequests.js";
 import { logout } from "../../actions/AuthActions";
+import { Card, Button, Divider, IconButton } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 
 const InfoCard = () => {
   const dispatch = useDispatch()
@@ -33,19 +34,17 @@ const InfoCard = () => {
       }
     };
     fetchProfileUser();
-  }, [user]);
+  }, [user, profileUserId]);
 
   return (
-    <div className="InfoCard">
+    <Card className="InfoCard">
       <div className="infoHead">
         <h4>Profile Info</h4>
         {user._id === profileUserId ? (
           <div>
-            <UilPen
-              width="2rem"
-              height="1.2rem"
-              onClick={() => setModalOpened(true)}
-            />
+            <IconButton>
+              <EditIcon onClick={() => setModalOpened(true)} />
+            </IconButton>
             <ProfileModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
@@ -64,21 +63,24 @@ const InfoCard = () => {
         </span>
         <span>{profileUser.relationship}</span>
       </div>
+      <Divider />
       <div className="info">
         <span>
           <b>Lives in </b>
         </span>
         <span>{profileUser.livesIn}</span>
       </div>
+      <Divider />
       <div className="info">
         <span>
           <b>Works at </b>
         </span>
         <span>{profileUser.worksAt}</span>
       </div>
+      <Divider />
 
-      <button className="button logout-button" onClick={handleLogOut}>Log Out</button>
-    </div>
+      <Button variant="contained" onClick={handleLogOut}>Log Out</Button>
+    </Card>
   );
 };
 

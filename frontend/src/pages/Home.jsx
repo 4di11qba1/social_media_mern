@@ -7,11 +7,13 @@ import { Box } from "@mui/material";
 import { darkTheme } from "../components/Theme";
 const Home = () => {
   return (
-    <Box className="Home" sx={{backgroundColor: darkTheme.palette.background.default}}>
-      <ProfileSide/>
-      <PostSide />
-      <RightSide />
-    </Box>
+    <>
+      <Box className="Home" sx={{backgroundColor: darkTheme.palette.background.default, marginLeft: '64px'}}>
+        <ProfileSide/>
+        <PostSide />
+        <RightSide />
+      </Box>
+    </>
   );
 };
 

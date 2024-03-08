@@ -3,7 +3,7 @@ import "./FollowersCard.css";
 import FollowersModal from "../FollowersModal/FollowersModal";
 import { getAllUser } from "../../api/UserRequests";
 import User from "../User/User";
-import { Card, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import {darkTheme} from "../../components/Theme";
 const FollowersCard = ({ location }) => {
@@ -24,7 +24,8 @@ const FollowersCard = ({ location }) => {
       <h3>People you may know</h3>
 
       {persons.map((person, id) => {
-        if (person._id !== user._id) return <User person={person} key={id} />;
+        if (person._id !== user._id) return <User person={person} key={id} />
+        else return null;
       })}
       {!location ? (
         <Button variant="contained"><span onClick={() => setModalOpened(true)}>Show more</span></Button>

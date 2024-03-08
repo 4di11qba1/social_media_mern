@@ -4,16 +4,18 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import ProfileLeft from "../../components/ProfileLeft/ProfileLeft";
 import RightSide from "../../components/RightSide/RightSide";
 import "./Profile.css";
+import { Box } from "@mui/material";
+import { darkTheme } from "../../components/Theme";
 const Profile = () => {
   return (
-    <div className="Profile">
+    <Box className="Profile" sx={{backgroundColor: darkTheme.palette.background.default}}>
       <ProfileLeft />
       <div className="Profile-center">
         <ProfileCard location = 'profilePage'/>
       <PostSide/>
       </div>
       <RightSide/>
-    </div>
+    </Box>
   );
 };
 

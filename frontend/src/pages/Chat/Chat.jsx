@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import Conversation from "../../components/Coversation/Conversation";
-import LogoSearch from "../../components/LogoSearch/LogoSearch";
-import NavIcons from "../../components/NavIcons/NavIcons";
 import "./Chat.css";
 import { useEffect } from "react";
 import { userChats } from "../../api/ChatRequests";
 import { useSelector } from "react-redux";
 import { io } from 'socket.io-client';
+import { Box, Card } from "@mui/material";
+import { darkTheme } from '../../components/Theme.js';
 
 const Chat = () => {
   // const dispatch = useDispatch();
@@ -66,11 +66,11 @@ const Chat = () => {
   };
 
   return (
-    <div className="Chat">
+    <div className="Chat" style={{backgroundColor: darkTheme.palette.background.default, marginLeft: '64px'}}>
       {/* Left Side */}
       <div className="Left-side-chat">
-        <LogoSearch />
-        <div className="Chat-container">
+        {/* <div style={{height: '56px'}}></div> */}
+        <Card className="Chat-container" style={{backgroundColor: darkTheme.palette.background.paper}}>
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat, index) => (
@@ -87,15 +87,15 @@ const Chat = () => {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Right Side */}
 
       <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
+        {/* <div style={{ width: "20rem", alignSelf: "center" }}>
           <NavIcons />
-        </div>
+        </div> */}
         <ChatBox
           chat={currentChat}
           currentUser={user._id}

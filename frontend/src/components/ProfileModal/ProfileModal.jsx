@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import { Modal, useMantineTheme } from "@mantine/core";
+import { Modal } from "@mantine/core";
 import "./ProfileModal.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { uploadImage } from "../../actions/UploadAction";
 import { updateUser } from "../../actions/UserAction";
+import { 
+  FormControl,
+  FormHelperText, 
+  Input, 
+  InputLabel, 
+  Card, 
+  Button,
+} from '@mui/material';
+import { darkTheme } from "../Theme";
 
 const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
-  const theme = useMantineTheme();
   const { password, ...other } = data;
   const [formData, setFormData] = useState(other);
   const [profileImage, setProfileImage] = useState(null);
@@ -15,7 +23,6 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const dispatch = useDispatch();
   const param = useParams();
 
-  const { user } = useSelector((state) => state.authReducer.authData);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -64,9 +71,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   return (
     <Modal
       overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
+        darkTheme.palette.background.default
       }
       overlayOpacity={0.55}
       overlayBlur={3}
@@ -74,79 +79,145 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form className="infoForm" onSubmit={handleSubmit}>
+      <Card className="infoForm" onSubmit={handleSubmit}>
         <h3>Your Info</h3>
         <div>
-          <input
+          {/* <input
             value={formData.firstname}
             onChange={handleChange}
             type="text"
             placeholder="First Name"
             name="firstname"
             className="infoInput"
-          />
-          <input
+          /> */}
+          <FormControl sx={{width: '100%'}}>
+              <InputLabel htmlFor="my-first">First Name</InputLabel>
+              <Input 
+                id="my-first" 
+                aria-describedby="my-helper-text" 
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your firstname</FormHelperText>
+          </FormControl>
+          {/* <input
             value={formData.lastname}
             onChange={handleChange}
             type="text"
             placeholder="Last Name"
             name="lastname"
             className="infoInput"
-          />
+          /> */}
+          <FormControl sx={{width: '100%'}}>
+              <InputLabel htmlFor="my-last">Last Name</InputLabel>
+              <Input 
+                id="my-last" 
+                aria-describedby="my-helper-text" 
+                name="lastname"
+                value={formData.lastname}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your lastname</FormHelperText>
+          </FormControl>
         </div>
 
         <div>
-          <input
+          {/* <input
             value={formData.worksAt}
             onChange={handleChange}
             type="text"
             placeholder="Works at"
             name="worksAt"
             className="infoInput"
-          />
+          /> */}
+          <FormControl sx={{width: '100%', marginTop: '25px'}}>
+              <InputLabel htmlFor="my-work">Works At</InputLabel>
+              <Input 
+                id="my-work" 
+                aria-describedby="my-helper-text" 
+                name="worksAt"
+                value={formData.worksAt}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your workplace</FormHelperText>
+          </FormControl>
         </div>
 
         <div>
-          <input
+          {/* <input
             value={formData.livesIn}
             onChange={handleChange}
             type="text"
             placeholder="Lives in"
             name="livesIn"
             className="infoInput"
-          />
-          <input
+          /> */}
+          <FormControl sx={{width: '100%', marginTop: '55px'}}>
+              <InputLabel htmlFor="my-live">Lives In</InputLabel>
+              <Input 
+                id="my-live" 
+                aria-describedby="my-helper-text" 
+                name="livesIn"
+                value={formData.livesIn}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your city</FormHelperText>
+          </FormControl>
+          {/* <input
             value={formData.country}
             onChange={handleChange}
             type="text"
             placeholder="Country"
             name="country"
             className="infoInput"
-          />
+          /> */}
+          <FormControl sx={{width: '100%', marginTop: '55px'}}>
+              <InputLabel htmlFor="my-country">Country</InputLabel>
+              <Input 
+                id="my-country" 
+                aria-describedby="my-helper-text" 
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your country</FormHelperText>
+          </FormControl>
         </div>
 
         <div>
-          <input
+          {/* <input
             value={formData.relationship}
             onChange={handleChange}
             type="text"
             className="infoInput"
             placeholder="Relationship status"
             name="relationship"
-          />
+          /> */}
+          <FormControl sx={{width: '100%', marginTop: '85px'}}>
+              <InputLabel htmlFor="my-relationship">Relationship</InputLabel>
+              <Input 
+                id="my-relationship" 
+                aria-describedby="my-helper-text" 
+                name="relationship"
+                value={formData.relationship}
+                onChange={handleChange}
+              />
+              <FormHelperText id="my-helper-text">Enter your relationship status</FormHelperText>
+          </FormControl>
         </div>
 
-        <div>
+        <div style={{marginTop: '110px'}}>
           Profile image
           <input type="file" name="profileImage" onChange={onImageChange} />
           Cover image
           <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
 
-        <button className="button infoButton" type="submit">
+        <Button fullWidth variant="contained" type="submit">
           Update
-        </button>
-      </form>
+        </Button>
+      </Card>
     </Modal>
   );
 };

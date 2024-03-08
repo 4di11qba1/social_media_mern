@@ -1,25 +1,27 @@
 import React from "react";
-import { Modal, useMantineTheme } from "@mantine/core";
+import { Dialog, useTheme } from "@mui/material";
 import FollowersCard from "../FollowersCard/FollowersCard";
+import { darkTheme } from "../Theme";
 
 const FollowersModal = ({ modalOpened, setModalOpened }) => {
-  const theme = useMantineTheme();
+  const theme = useTheme();
+  
   return (
-    <Modal
-      overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
-      }
-      overlayOpacity={0.55}
-      overlayBlur={3}
-      size="55%"
-      opened={modalOpened}
+    <Dialog
+      open={modalOpened}
       onClose={() => setModalOpened(false)}
+      PaperProps={{
+        style: {
+          backgroundColor: darkTheme.palette.background.paper,
+          boxShadow: theme.shadows[5],
+          padding: theme.spacing(4),
+          width: "55%",
+          borderRadius: '15px'
+        }
+      }}
     >
-
-    <FollowersCard location='modal'/>
-    </Modal>
+      <FollowersCard location='modal'/>
+    </Dialog>
   );
 };
 
