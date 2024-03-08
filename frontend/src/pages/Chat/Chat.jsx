@@ -6,10 +6,11 @@ import { useEffect } from "react";
 import { userChats } from "../../api/ChatRequests";
 import { useSelector } from "react-redux";
 import { io } from 'socket.io-client';
-import { Box, Card } from "@mui/material";
-import { darkTheme } from '../../components/Theme.js';
+import { Card } from "@mui/material";
+import { useTheme } from "@mui/material";
 
 const Chat = () => {
+  const theme = useTheme();
   // const dispatch = useDispatch();
   const socket = useRef();
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -66,11 +67,11 @@ const Chat = () => {
   };
 
   return (
-    <div className="Chat" style={{backgroundColor: darkTheme.palette.background.default, marginLeft: '64px'}}>
+    <div className="Chat" style={{backgroundColor: theme.palette.background.default, marginLeft: '64px'}}>
       {/* Left Side */}
       <div className="Left-side-chat">
         {/* <div style={{height: '56px'}}></div> */}
-        <Card className="Chat-container" style={{backgroundColor: darkTheme.palette.background.paper}}>
+        <Card className="Chat-container" style={{backgroundColor: theme.palette.background.paper}}>
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat, index) => (

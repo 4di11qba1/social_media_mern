@@ -4,11 +4,12 @@ import ProfileSide from "../components/profileSide/ProfileSide";
 import RightSide from "../components/RightSide/RightSide";
 import "./Home.css";
 import { Box } from "@mui/material";
-import { darkTheme } from "../components/Theme";
+import { useTheme } from "@mui/material";
 const Home = () => {
+  const theme = useTheme();
   return (
     <>
-      <Box className="Home" sx={{backgroundColor: darkTheme.palette.background.default, marginLeft: '64px'}}>
+      <Box className="Home" sx={{backgroundColor: theme.palette.background.default, marginLeft: '64px'}}>
         <ProfileSide/>
         <PostSide />
         <RightSide />

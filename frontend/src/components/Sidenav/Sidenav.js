@@ -15,7 +15,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ShopIcon from '@mui/icons-material/Shop';
 import GradeIcon from '@mui/icons-material/Grade';
-import { Logout, AppRegistration } from '@mui/icons-material';
+import { Logout } from '@mui/icons-material';
 import { LightMode, DarkMode } from '@mui/icons-material';
 import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -93,7 +93,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData }) {
+export default function MiniDrawer({ darkMode, changeMode }) {
 
   const dispatch = useDispatch()
   const handleLogOut = ()=> {
@@ -142,7 +142,7 @@ export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData
               ...(open && { display: 'none' })
             }}
           >
-            <img src='img/tiger-logo.jpg' alt='Logo' style={{width: '25px'}} />
+            <img src='http://localhost:3000/img/tiger-logo.jpg' alt='Logo' style={{width: '25px'}} />
           </IconButton>
           <div style={{display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center'}}>
 
@@ -173,7 +173,7 @@ export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   borderRadius: '0 30px 30px 0',
-                  bgcolor: isActive('home') ? 'black' : ''
+                  bgcolor: isActive('home') ? 'background.default' : ''
                 }}
               >
                 <ListItemIcon
@@ -195,7 +195,7 @@ export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   borderRadius: '0 30px 30px 0',
-                  bgcolor: isActive('chat') ? 'black' : ''
+                  bgcolor: isActive('chat') ? 'background.default' : ''
                 }}
               >
                 <ListItemIcon
@@ -219,7 +219,7 @@ export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
                 borderRadius: '0 30px 30px 0',
-                bgcolor: isActive('main') ? 'black' : ''
+                bgcolor: isActive('main') ? 'background.default' : ''
               }}
             >
               <ListItemIcon
@@ -241,7 +241,7 @@ export default function MiniDrawer({ windowWidth, darkMode, changeMode, itemData
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
                 borderRadius: '0 30px 30px 0',
-                bgcolor: isActive('library') ? 'black' : ''
+                bgcolor: isActive('library') ? 'background.default' : ''
               }}
             >
               <ListItemIcon

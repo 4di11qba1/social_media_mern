@@ -4,13 +4,14 @@ import { UilScenery } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage, uploadPost } from "../../actions/UploadAction";
-import { darkTheme } from "../Theme";
+import { useTheme } from '@mui/material';
 import {
   Button,
   Box
 } from '@mui/material';
 
 const PostShare = () => {
+  const theme = useTheme();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const loading = useSelector((state) => state.postReducer.uploading);
@@ -62,7 +63,7 @@ const PostShare = () => {
     desc.current.value = "";
   };
   return (
-    <Box className="PostShare" sx={{backgroundColor: darkTheme.palette.background.paper}}>
+    <Box className="PostShare" sx={{backgroundColor: theme.palette.background.paper}}>
       <img
         src={
           user.profilePicture
@@ -73,7 +74,7 @@ const PostShare = () => {
       />
       <div>
         <input
-          style={{color: darkTheme.palette.primary.text}}
+          style={{color: theme.palette.primary.text}}
           type="text"
           placeholder="What's happening?"
           required

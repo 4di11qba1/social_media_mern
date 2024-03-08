@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth/Auth";
 import Profile from "./pages/Profile/Profile";
@@ -9,62 +9,76 @@ import { MyThemeProvider } from "./components/Theme";
 import MiniDrawer from "./components/Sidenav/Sidenav";
 import Main from './components/Main';
 import Library from './components/Library';
+import { useEffect, useState } from "react";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
+  const loc = useLocation();
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    setShowAnimation(true); // Show animation when the route changes
+    const timeout = setTimeout(() => {
+      setShowAnimation(false); // Hide animation after 2 seconds
+    }, 750);
+
+    return () => clearTimeout(timeout);
+  }, [loc]);
+
+  const [darkMode, setDarkMode] = useState(true);
+
+  const changeDarkMode = () => setDarkMode(!darkMode);
+
   return (
-    <div
-      className="App"
-      style={{
-        height:
-          window.location.href === "http://localhost:3000/chat"
-            ? "calc(100vh - 2rem)"
-            : "auto",
-      }}
-    >
-      <MyThemeProvider darkMode={true}>
-        <MiniDrawer />
-        <Routes>
-          <Route
-            path="/"
-            element={user ? <Navigate to="home" /> : <Navigate to="auth" />}
-          />
-          <Route
-            path="/home"
-            element={user ? <Home /> : <Navigate to="../auth" />}
-          />
-          <Route
-            path="/auth"
-            element={user ? <Navigate to="../home" /> : <Auth />}
-          />
-          <Route
-            path="/profile/:id"
-            element={user ? <Profile /> : <Navigate to="../auth" />}
-          />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
+    <div className="App">
+      <MyThemeProvider darkMode={darkMode}>
+        <div className={`animation ${showAnimation ? 'show' : ''}`} style={{backgroundColor: 'black'}}></div>
+        {showAnimation ? null : 
+          <>
+            {user && <MiniDrawer darkMode={darkMode} changeMode={changeDarkMode} />}
+            <Routes>
+              <Route
+                path="/"
+                element={user ? <Navigate to="home" /> : <Navigate to="auth" />}
+              />
+              <Route
+                path="/home"
+                element={user ? <Home /> : <Navigate to="../auth" />}
+              />
+              <Route
+                path="/auth"
+                element={user ? <Navigate to="../home" /> : <Auth />}
+              />
+              <Route
+                path="/profile/:id"
+                element={user ? <Profile /> : <Navigate to="../auth" />}
+              />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: "1rem" }}>
+                    <p>There's nothing here!</p>
+                  </main>
+                }
+              />
 
-          <Route
-            path="/chat"
-            element={user ? <Chat /> : <Navigate to="../auth" />}
-          />
+              <Route
+                path="/chat"
+                element={user ? <Chat /> : <Navigate to="../auth" />}
+              />
 
-          <Route
-            path="/main"
-            element={user ? <Main itemData={itemData} itemDataV={itemDataV} /> : <Navigate to="../auth" />}
-          />
+              <Route
+                path="/main"
+                element={user ? <Main itemData={itemData} itemDataV={itemDataV} /> : <Navigate to="../auth" />}
+              />
 
-          <Route
-            path="/library"
-            element={user ? <Library itemData={itemData} itemDataV={itemDataV} /> : <Navigate to="../auth" />}
-          />
-        </Routes>
+              <Route
+                path="/library"
+                element={user ? <Library itemData={itemData} itemDataV={itemDataV} /> : <Navigate to="../auth" />}
+              />
+            </Routes>
+          </>
+        }
       </MyThemeProvider>
     </div>
   );

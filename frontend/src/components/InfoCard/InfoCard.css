@@ -1,12 +1,10 @@
-.InfoCard
-{
+.InfoCard {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     padding: 1rem;
     border-radius: 1rem;
-    width: 90%;
-    border-radius: 25px !important;
+    width: 100%;
 }
 
 .infoHead{

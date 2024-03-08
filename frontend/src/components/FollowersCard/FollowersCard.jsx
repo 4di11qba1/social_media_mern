@@ -5,11 +5,12 @@ import { getAllUser } from "../../api/UserRequests";
 import User from "../User/User";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
-import {darkTheme} from "../../components/Theme";
+import { useTheme } from "@mui/material";
 const FollowersCard = ({ location }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [persons, setPersons] = useState([]);
   const { user } = useSelector((state) => state.authReducer.authData);
+  const theme = useTheme();
 
   useEffect(() => {
     const fetchPersons = async () => {
@@ -20,7 +21,7 @@ const FollowersCard = ({ location }) => {
   }, []);
 
   return (
-    <div className="FollowersCard" style={{color: darkTheme.palette.primary.text}}>
+    <div className="FollowersCard" style={{color: theme.palette.primary.text}}>
       <h3>People you may know</h3>
 
       {persons.map((person, id) => {

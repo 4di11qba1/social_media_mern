@@ -13,7 +13,7 @@ import {
   Card, 
   Button,
 } from '@mui/material';
-import { darkTheme } from "../Theme";
+import { useTheme } from '@mui/material';
 
 const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const { password, ...other } = data;
@@ -22,6 +22,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const param = useParams();
+  const theme = useTheme();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -71,7 +72,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   return (
     <Modal
       overlayColor={
-        darkTheme.palette.background.default
+        theme.palette.background.default
       }
       overlayOpacity={0.55}
       overlayBlur={3}
@@ -214,7 +215,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
           <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
 
-        <Button fullWidth variant="contained" type="submit">
+        <Button fullWidth variant="contained" type="submit" onClick={handleSubmit}>
           Update
         </Button>
       </Card>

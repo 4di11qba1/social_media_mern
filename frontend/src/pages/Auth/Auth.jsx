@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Auth.css";
-import Logo from "../../img/logo.png";
+import Logo from "../../img/tiger-logo.jpg";
 import { logIn, signUp } from "../../actions/AuthActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ import {
   Box
 } from '@mui/material';
 // import { motion } from 'framer-motion';
-import { darkTheme, lightTheme } from '../../components/Theme.js';
+import { useTheme } from "@mui/material";
 
 const Auth = () => {
   const initialState = {
@@ -26,6 +26,7 @@ const Auth = () => {
     password: "",
     confirmpass: "",
   };
+  const theme = useTheme();
   const loading = useSelector((state) => state.authReducer.loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -72,13 +73,13 @@ const Auth = () => {
   };
 
   return (
-    <Box className="Auth" sx={{backgroundColor: darkTheme.palette.background.default}}>
+    <Box className="Auth" sx={{backgroundColor: theme.palette.background.default}}>
       {/* left side */}
 
       <div className="a-left">
         <img src={Logo} alt="" />
 
-        <div style={{color: darkTheme.palette.text.primary}}>
+        <div style={{color: theme.palette.text.primary}}>
           <Typography component="div" variant="h3">
             Gamer's Utopia
           </Typography>

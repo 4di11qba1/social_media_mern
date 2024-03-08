@@ -3,12 +3,13 @@ import React from 'react'
 import HorizontalCard from './HorizontalCard';
 import { Typography } from '@mui/material';
 import Dropdown from './DropDown';
-import { darkTheme } from './Theme';
-import {Card} from '@mui/material';
+import { useTheme } from '@mui/material';
+import { Card } from '@mui/material';
 
 function Library({itemData}) {
+    const theme = useTheme();
   return (
-    <Card sx={{backgroundColor: darkTheme.palette.background.default, borderRadius: '0px', paddingTop: '10px', paddingLeft: '75px', paddingRight: '10px'}}>
+    <Card sx={{backgroundColor: theme.palette.background.default, borderRadius: '0px', paddingTop: '10px', paddingLeft: '75px', paddingRight: '10px'}}>
 
         {/* <AnimatePresence>    */}
         

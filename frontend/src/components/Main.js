@@ -6,20 +6,21 @@ import MiniCard from './MiniCard'
 import VerticalCard from './VerticalCard/VerticalCard'
 import BoxCard from './BoxCard'
 import Highlight from './Highlight/Highlight'
-import { darkTheme } from './Theme'
+import { useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 function Main({ itemData }) {
+  const theme = useTheme();
   const nav = useNavigate()
 
   const handleNav = (path) => {
     nav(path)
   }
   return (
-    <Card sx={{backgroundColor: darkTheme.palette.background.default, borderRadius: '0px', marginLeft: '64px', paddingLeft: '15px', paddingTop: '12px'}}>
+    <Card sx={{backgroundColor: theme.palette.background.default, borderRadius: '0px', marginLeft: '64px', paddingLeft: '15px', paddingTop: '12px'}}>
         <LandingCards itemData={itemData.concat(itemData)} />
         
-        <div style={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: '15px'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', width: '99.5%', padding: '15px'}}>
           <Typography variant='h5' component='div'>
             Top Choices
           </Typography>
@@ -27,7 +28,7 @@ function Main({ itemData }) {
             <ArrowForward />
           </IconButton>
         </div>
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '15px'}}>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '99.5%', flexWrap: 'wrap', gap: '15px'}}>
           {itemData.map((item, index) => {
             return <MiniCard key={index} item={item} />
           })}
@@ -40,7 +41,7 @@ function Main({ itemData }) {
         </div>
         <Highlight item={itemData[3]} btnText={`Let's GO`} handleNav={handleNav} />
 
-        <div style={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: '15px', marginTop: '15px'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', width: '99.5%', padding: '15px', marginTop: '15px'}}>
           <Typography variant='h5' component='div'>
             Trending
           </Typography>
