@@ -4,7 +4,6 @@ import { addMessage, getMessages } from "../../api/MessageRequests";
 import { getUser } from "../../api/UserRequests";
 import "./ChatBox.css";
 import { Card, Button, IconButton } from '@mui/material';
-// import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useTheme } from "@mui/material";
