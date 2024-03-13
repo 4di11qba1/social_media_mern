@@ -187,7 +187,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
                 name=""
                 id=""
                 style={{ display: "none" }}
-                ref={imageRef}
+                ref={ imageRef }
               />
             </Card>{" "}
           </>
